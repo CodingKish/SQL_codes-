@@ -1,0 +1,26 @@
+/* What does the app's SQL look like? */
+CREATE TABLE Final_Fantasy (id INTEGER PRIMARY KEY,Character TEXT, Strength INTEGER, Speed INTEGER, Weapon TEXT);
+
+INSERT INTO Final_Fantasy VALUES (1,"Cloud",25,18,"Sword");
+INSERT INTO Final_Fantasy VALUES (2,"Barrett",30,14,"Machine Gun");
+INSERT INTO Final_Fantasy VALUES (3, "Tifa",22, 20,"Brass Knuckles");
+INSERT INTO Final_Fantasy VALUES (4,"Aries",20,16,"Staff");
+INSERT INTO Final_Fantasy VALUES (5, "Red XIII",24,22,"Fangs");
+INSERT INTO Final_Fantasy VALUES (6, "Vincent Valentine",22,19, "Quicksilver");
+INSERT INTO Final_Fantasy VALUES (7,"Sephiroth",40,30,"Samurai Sword");
+SELECT * FROM Final_Fantasy;
+UPDATE Final_Fantasy SET Strength = 35 WHERE id = 1;
+SELECT * FROM Final_Fantasy;
+ALTER TABLE Final_Fantasy ADD Magic INTEGER;
+SELECT * FROM Final_Fantasy;
+UPDATE Final_Fantasy SET Magic =20 WHERE id =1;
+UPDATE Final_Fantasy SET Magic =15 WHERE id=2;
+UPDATE Final_Fantasy SET Magic= 17 WHERE id=3;
+UPDATE Final_Fantasy SET Magic = 27 WHERE id =4;
+UPDATE Final_Fantasy SET Magic =25 WHERE id=5;
+UPDATE Final_Fantasy SET Magic =19 WHERE id =6;
+UPDATE Final_Fantasy SET Magic=28 WHERE id =7;
+SELECT * FROM Final_Fantasy;
+
+DROP TABLE Final_Fantasy;
+SELECT * FROM Final_Fantasy;
