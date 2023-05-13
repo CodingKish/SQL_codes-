@@ -1,0 +1,101 @@
+CREATE TABLE fictional_characters (id INTEGER PRIMARY KEY,name TEXT,hometown TEXT) ;
+INSERT INTO fictional_characters VALUES (1,"Pooh Bear", "The Hundred Acre Woods");
+INSERT INTO fictional_characters VALUES (2,"Christopher Robin","Chelsea, London");
+INSERT INTO fictional_characters VALUES (3,"Tigger", "The Hundred Acre Woods");
+INSERT INTO fictional_characters VALUES (4,"Owl", "The Hundred Acre Woods");
+INSERT INTO fictional_characters VALUES (5,"Piglet", "The Hundred Acre Woods");
+INSERT INTO fictional_characters VALUES (6, "Rabbit","The Hundred Acre Woods");
+INSERT INTO fictional_characters VALUES (7,"Eeyore","The Hundred Acre Woods");
+
+SELECT * FROM fictional_characters;
+
+CREATE TABLE book_premier (character_name TEXT, title TEXT, year INTEGER);
+INSERT INTO book_premier VALUES ("Pooh Bear","Winnie The Pooh", 1926);
+INSERT INTO book_premier VALUES ("Christopher Robin","Winnie The Pooh", 1926);
+INSERT INTO book_premier VALUES ("Tigger","The House at Pooh Corner",1928);
+INSERT INTO book_premier VALUES ("Owl","Winnie The Pooh", 1926);
+INSERT INTO book_premier VALUES ("Piglet","Winnie The Pooh",1926);
+INSERT INTO book_premier VALUES ("Rabbit","Winnie The Pooh",1926);
+INSERT INTO book_premier VALUES ("Eeyore","Winnie The Pooh",1926);
+
+CREATE TABLE published_books (character_name TEXT,books INTEGER);
+INSERT INTO published_books VALUES ("Winnie The Pooh", 25);
+INSERT INTO published_books VALUES ("Christopher Robin", 4);
+INSERT INTO published_books VALUES ("Tigger",25);
+INSERT INTO published_books VALUES ("Owl",16);
+INSERT INTO published_books VALUES ("Piglet",25);
+INSERT INTO published_books VALUES("Rabbit",2);
+INSERT INTO published_books VALUES ("Eeyore",3);
+
+CREATE TABLE character_details(name TEXT,house_type TEXT,favorite_food TEXT);
+INSERT INTO character_details VALUES ("Winnie The Pooh", "tree", "honey");
+INSERT INTO character_details VALUES ("Christopher Robin","farm","chocolate cake");
+INSERT INTO character_details VALUES ("Tigger","clubhouse","extract of malt");
+INSERT INTO character_details VALUES ("Owl","tree","biscuits");
+INSERT INTO character_details VALUES ("Piglet","tree","acorns");
+INSERT INTO character_details VALUES ("Rabbit","house","carrots");
+INSERT INTO character_details VALUES ("Eeyore","treehouse","figs");
+
+CREATE TABLE The_Big_Screen (name TEXT,movies INTEGER, premier_year INTEGER);
+INSERT INTO The_Big_Screen VALUES  ("Winnie The Pooh",27,1966);
+INSERT INTO The_Big_Screen VALUES ("Christopher Robin",19,1966);
+INSERT INTO The_Big_Screen VALUES ("Tigger",21,1977);
+INSERT INTO The_Big_Screen VALUES ("Owl",19,1966);
+INSERT INTO The_Big_Screen VALUES ("Piglet",17,1966);
+INSERT INTO The_Big_Screen VALUES ("Rabbit",23,1966);
+INSERT INTO The_Big_Screen VALUES ("Eeyore",23, 1966);
+
+SELECT * FROM book_premier;
+SELECT * FROM published_books;
+SELECT * FROM character_details;
+SELECT * FROM The_Big_Screen;
+
+SELECT fictional_characters.name, character_details.favorite_food FROM fictional_characters
+JOIN character_details
+ON fictional_characters.name = character_details.name;
+
+SELECT book_premier.character_name, book_premier.year AS book_debut, The_Big_Screen.premier_year AS movie_premiere FROM book_premier
+JOIN The_Big_Screen 
+ON book_premier.character_name = The_Big_Screen.name;
+
+SELECT fictional_characters.name, character_details.house_type FROM fictional_characters
+JOIN character_details
+ON fictional_characters.name = character_details.name
+ORDER BY house_type;
+
+SELECT published_books.character_name, published_books.books AS total_books, The_Big_Screen.movies AS total_movies FROM published_books
+JOIN The_Big_Screen
+ON published_books.character_name = The_Big_Screen.name
+ORDER BY character_name;
+
+SELECT published_books.character_name, MAX (published_books.books),MAX (The_Big_Screen.movies) FROM published_books
+JOIN The_Big_Screen
+ON published_books.character_name =The_Big_Screen.name;
+
+
+SELECT fictional_characters.name AS name,fictional_characters.hometown AS Home_Sweet_Home, book_premier.title AS first_book,The_Big_Screen.premier_year AS first_movie,character_details.favorite_food AS favorite_treat, published_books.books AS Published_books FROM fictional_characters
+JOIN book_premier
+ON fictional_characters.name = book_premier.character_name
+JOIN The_Big_Screen
+ON fictional_characters.name = The_Big_Screen.name
+JOIN character_details
+ON fictional_characters.name = character_details.name
+JOIN published_books
+ON fictional_characters.name = published_books.character_name
+ORDER BY favorite_food;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
